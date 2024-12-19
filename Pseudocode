@@ -4,6 +4,7 @@
 #12-18-24
 
 #pseudocode, basic outline of functionality 
+#assumes one main json file for conditions with a sub-dictionary for gender-specific conditions
 
 begin
 import conditions file
