@@ -7,17 +7,19 @@
 
 begin
 import conditions file
+
 #gather patient info   
 input age, weight, gender
-  #get patient history
 input current medications, relevant medical history
-  #account for gender specific conditions
+
+#account for gender specific conditions
 create empty list relevantConditions
 copy all conditions to list if value of condition is both genders
 if patientGender is male
-update relevantConditions with male values
+	update relevantConditions with male values
 if patientGender is female
-update relevantConditions with female values
+	update relevantConditions with female values
+
 #gather symptoms
 display body diagram appropriate to gender
 allow user to choose section experiencing symptom
@@ -25,22 +27,24 @@ create empty list patientSymptoms #use to track all symptoms
 create variable symptomAccuracy #use to track accuracy
 display list of symptoms related to chosen body section
 display initial symptom-to-cause accuracy percentage bar # 0%
+
 while user wants to add symptoms: 
 	allow user to choose symptom
-if user chooses a symptom: 
-append symptom to patientSymptoms
-#calculate likelihood bar
-update symptomAccuracy if symptom matches cause
-calculate new accuracy percentage
+	if user chooses a symptom: 
+		append symptom to patientSymptoms
+		#calculate likelihood bar
+		update symptomAccuracy if symptom matches cause
+		calculate new accuracy percentage
 		display updated accuracy percentage bar
-ask if user wants to add more symptoms
+		ask if user wants to add more symptoms
 end while
+
 #present results
 function presentResults
 create empty list possibleCauses
 for each condition in relevantConditions:
-if condition has >= two symptoms matching with patientSymptoms
-append condition to possibleCauses
-display results from possibleCauses in order
-display likelihood bar of accuracy percentage
+	if condition has >= two symptoms matching with patientSymptoms:
+	 	append condition to possibleCauses
+		display results from possibleCauses in order
+		display likelihood bar of accuracy percentage
 end
